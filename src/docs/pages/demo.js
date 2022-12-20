@@ -1,15 +1,17 @@
 import { Button, ButtonGroup, TextField } from '@mui/material';
 import { useRef, useState } from 'react';
-import { ValidateEmail, ValidatePhone, ValidateURL } from '../../lib';
+import { ValidateEmail, ValidatePhone, ValidateURL, ValidateYoutubeURL } from '../../lib';
 
 const Demo = () => {
   const emailRef = useRef();
   const phoneRef = useRef();
   const urlRef = useRef();
+  const youtubeRef = useRef();
 
   const [emailResult, setEmailResult] = useState();
   const [phoneResult, setPhoneResult] = useState();
   const [urlResult, setUrlResult] = useState();
+  const [youtubeResult, setYoutubeResult] = useState();
 
   return (
     <div className='Demo'>
@@ -59,6 +61,29 @@ const Demo = () => {
           onClick={() => {
             const { value } = urlRef.current;
             setUrlResult(ValidateURL(value));
+          }}
+        >
+          click
+        </Button>
+      </ButtonGroup>
+
+      <hr style={{ margin: '10px 0' }} />
+
+      <h2>Validate YouTube URL Address</h2>
+      <TextField
+        inputRef={youtubeRef}
+        defaultValue='https://www.youtube.com/watch?v=09839DpTctU'
+        label='YouTube URL'
+        fullWidth
+      />
+      <pre>
+        <code>{JSON.stringify(youtubeResult ?? 'no result')}</code>
+      </pre>
+      <ButtonGroup variant='contained'>
+        <Button
+          onClick={() => {
+            const { value } = youtubeRef.current;
+            setYoutubeResult(ValidateYoutubeURL(value));
           }}
         >
           click

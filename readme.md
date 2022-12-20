@@ -24,7 +24,7 @@ npm install lesca-validate --save
 As a Node module:
 
 ```javascript
-import { ValidateEmail, ValidatePhone, ValidateURL } from 'lesca-validate';
+import { ValidateEmail, ValidatePhone, ValidateURL, ValidateYoutubeURL } from 'lesca-validate';
 
 const email = 'username@host.com';
 ValidateEmail(email); // true
@@ -34,6 +34,9 @@ ValidatePhone(phone); // true
 
 const url = 'https://google.com';
 ValidatePhone(url); // true
+
+const youtubeURL = 'https://www.youtube.com/watch?v=09839DpTctU';
+ValidateYoutubeURL(youtubeURL); // '09839DpTctU';
 ```
 
 ### Features

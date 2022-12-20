@@ -25,10 +25,19 @@ export const ValidateURL = (str: string) => {
   return !!pattern.test(str);
 };
 
+export const ValidateYoutubeURL = (url: string) => {
+  const pattern =
+    /^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/|shorts\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]*).*/;
+  const result = url.match(pattern);
+  if (result) return result[1];
+  return false;
+};
+
 const Validate = {
   email: ValidateEmail,
   phone: ValidatePhone,
   url: ValidateURL,
+  youtubeID: ValidateYoutubeURL,
 };
 
 export default Validate;
