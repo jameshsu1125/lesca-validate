@@ -1,17 +1,25 @@
 import { Button, ButtonGroup, TextField } from '@mui/material';
 import { useRef, useState } from 'react';
-import { ValidateEmail, ValidatePhone, ValidateURL, ValidateYoutubeURL } from '../../lib';
+import {
+  ValidateEmail,
+  ValidatePhone,
+  ValidateURL,
+  ValidateYoutubeURL,
+  ValiDateInvoice,
+} from '../../lib';
 
 const Demo = () => {
   const emailRef = useRef();
   const phoneRef = useRef();
   const urlRef = useRef();
   const youtubeRef = useRef();
+  const invoiceRef = useRef();
 
   const [emailResult, setEmailResult] = useState();
   const [phoneResult, setPhoneResult] = useState();
   const [urlResult, setUrlResult] = useState();
   const [youtubeResult, setYoutubeResult] = useState();
+  const [invoiceResult, setInvoiceResult] = useState();
 
   return (
     <div className='Demo'>
@@ -84,6 +92,23 @@ const Demo = () => {
           onClick={() => {
             const { value } = youtubeRef.current;
             setYoutubeResult(ValidateYoutubeURL(value));
+          }}
+        >
+          click
+        </Button>
+      </ButtonGroup>
+
+      <h2>Validate Invoice Number</h2>
+      <TextField inputRef={invoiceRef} defaultValue='XS12345678' label='Invoice number' fullWidth />
+      <pre>
+        <code>{JSON.stringify(invoiceResult ?? 'no result')}</code>
+      </pre>
+      <ButtonGroup variant='contained'>
+        <Button
+          onClick={() => {
+            const { value } = invoiceRef.current;
+            console.log(ValiDateInvoice(value));
+            setInvoiceResult(ValiDateInvoice(value));
           }}
         >
           click

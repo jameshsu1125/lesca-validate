@@ -1,3 +1,5 @@
+import { isEnglish, isNumber } from './misc';
+
 export const ValidateEmail = (email: string) => {
   return (
     String(email)
@@ -33,11 +35,23 @@ export const ValidateYoutubeURL = (url: string) => {
   return false;
 };
 
+export const ValiDateInvoice = (value: String) => {
+  const currentValue = String(value);
+  const { length } = currentValue;
+  if (length !== 10) return false;
+  const code = isEnglish(currentValue.slice(0, 2));
+  if (!code) return false;
+  const num = isNumber(currentValue.slice(2));
+  if (!num) return false;
+  return true;
+};
+
 const Validate = {
   email: ValidateEmail,
   phone: ValidatePhone,
   url: ValidateURL,
   youtubeID: ValidateYoutubeURL,
+  invoice: ValiDateInvoice,
 };
 
 export default Validate;
